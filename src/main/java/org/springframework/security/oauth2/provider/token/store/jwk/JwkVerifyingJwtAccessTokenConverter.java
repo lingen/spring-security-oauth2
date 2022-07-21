@@ -132,7 +132,7 @@ class JwkVerifyingJwtAccessTokenConverter extends JwtAccessTokenConverter {
 		Map<String, Object> claims = this.jsonParser.parseMap(jwt.getClaims());
 		if (claims.containsKey(EXP) && claims.get(EXP) instanceof Integer) {
 			Integer expiryInt = (Integer) claims.get(EXP);
-			claims.put(EXP, new Long(expiryInt));
+			claims.put(EXP, expiryInt.longValue());
 		}
 		this.getJwtClaimsSetVerifier().verify(claims);
 

@@ -281,7 +281,7 @@ public class JwtAccessTokenConverter implements TokenEnhancer, AccessTokenConver
 			Map<String, Object> claims = objectMapper.parseMap(claimsStr);
 			if (claims.containsKey(EXP) && claims.get(EXP) instanceof Integer) {
 				Integer intValue = (Integer) claims.get(EXP);
-				claims.put(EXP, new Long(intValue));
+				claims.put(EXP, intValue.longValue());
 			}
 			this.getJwtClaimsSetVerifier().verify(claims);
 			return claims;

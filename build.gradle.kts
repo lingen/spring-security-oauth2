@@ -7,53 +7,59 @@ plugins {
 group = "org.myddd.security"
 version = "0.1.0-SNAPSHOT"
 
-extra["spring-version"] = "5.3.22"
-extra["spring-security-version"] = "5.7.2"
 extra["jackson-version"] = "2.13.3"
 extra["junit-version"] = "5.8.2"
+extra["spring.boot"] = "2.7.1"
 
 repositories {
+    maven {
+        setUrl("https://maven.aliyun.com/repository/public/")
+    }
+    maven {
+        setUrl("https://maven.aliyun.com/repository/spring/")
+    }
     mavenCentral()
 }
 
 dependencies {
-    implementation("org.springframework:spring-beans:${project.extra["spring-version"]}")
-    implementation("org.springframework:spring-core:${project.extra["spring-version"]}")
-    implementation("org.springframework:spring-context:${project.extra["spring-version"]}")
-    implementation("org.springframework:spring-webmvc:${project.extra["spring-version"]}")
-    implementation("org.springframework:spring-tx:${project.extra["spring-version"]}")
-    compileOnly("org.springframework:spring-jdbc:${project.extra["spring-version"]}")
+    implementation("org.springframework.boot:spring-boot-starter-web:${rootProject.extra["spring.boot"]}")
+    implementation("org.springframework.boot:spring-boot-starter-security:${rootProject.extra["spring.boot"]}")
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-client:${rootProject.extra["spring.boot"]}")
 
-    implementation("org.springframework.security:spring-security-core:${project.extra["spring-security-version"]}")
-    implementation("org.springframework.security:spring-security-config:${project.extra["spring-security-version"]}")
-    implementation("org.springframework.security:spring-security-web:${project.extra["spring-security-version"]}")
-
+    compileOnly("org.springframework.boot:spring-boot-starter-jdbc:${rootProject.extra["spring.boot"]}")
+    compileOnly("org.springframework.boot:spring-boot-starter-data-redis:${rootProject.extra["spring.boot"]}")
     compileOnly("org.springframework.security:spring-security-jwt:1.1.1.RELEASE")
-    compileOnly("org.springframework.data:spring-data-redis:2.7.2")
-    compileOnly("redis.clients:jedis:4.2.3")
 
     implementation("javax.xml.bind:jaxb-api:2.3.0")
     implementation("com.sun.xml.bind:jaxb-impl:2.3.0")
     implementation("org.glassfish.jaxb:jaxb-runtime:2.3.0")
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
 
     implementation("com.fasterxml.jackson.core:jackson-annotations:${project.extra["jackson-version"]}")
     implementation("com.fasterxml.jackson.core:jackson-databind:${project.extra["jackson-version"]}")
-    implementation("commons-codec:commons-codec:1.15")
+    compileOnly("commons-codec:commons-codec:1.15")
 
-    implementation("javax.annotation:javax.annotation-api:1.3.2")
     compileOnly("javax.servlet:javax.servlet-api:4.0.1")
 
-    testImplementation("org.springframework:spring-test:${project.extra["spring-version"]}")
-
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${rootProject.extra["spring.boot"]}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${project.extra["junit-version"]}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${project.extra["junit-version"]}")
 
 }
 
+tasks.withType<JavaCompile> {
+    sourceCompatibility = "11"
+    targetCompatibility = "11"
+}
+
+java {
+    withSourcesJar()
+}
+
 publishing {
     publications {
         create<MavenPublication>("mavenJava"){
-            groupId = "org.myddd"
+            groupId = "org.myddd.security"
             afterEvaluate {
                 artifactId = tasks.jar.get().archiveBaseName.get()
             }
