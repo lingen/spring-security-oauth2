@@ -1,0 +1,10 @@
+.gradle
+.idea
+**/*/build
+*.class
+**/*/*.class
+target
+build/**
+*/build
+.DS_Store
+**/*/.DS_Store
