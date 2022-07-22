@@ -30,14 +30,12 @@ dependencies {
     compileOnly("org.springframework.boot:spring-boot-starter-data-redis:${rootProject.extra["spring.boot"]}")
     compileOnly("org.springframework.security:spring-security-jwt:1.1.1.RELEASE")
 
-    implementation("javax.xml.bind:jaxb-api:2.3.0")
-    implementation("com.sun.xml.bind:jaxb-impl:2.3.0")
-    implementation("org.glassfish.jaxb:jaxb-runtime:2.3.0")
+    implementation("com.sun.xml.bind:jaxb-impl:2.3.6")
     implementation("javax.annotation:javax.annotation-api:1.3.2")
 
     implementation("com.fasterxml.jackson.core:jackson-annotations:${project.extra["jackson-version"]}")
     implementation("com.fasterxml.jackson.core:jackson-databind:${project.extra["jackson-version"]}")
-    compileOnly("commons-codec:commons-codec:1.15")
+    implementation("commons-codec:commons-codec:1.15")
 
     compileOnly("javax.servlet:javax.servlet-api:4.0.1")
 
