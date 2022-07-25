@@ -11,6 +11,8 @@ extra["jackson-version"] = "2.13.3"
 extra["junit-version"] = "5.8.2"
 extra["spring.boot"] = "2.7.2"
 
+extra["myddd_version"] = "0.3.2-ALPHA"
+
 repositories {
     maven {
         setUrl("https://maven.aliyun.com/repository/public/")
@@ -19,6 +21,12 @@ repositories {
         setUrl("https://maven.aliyun.com/repository/spring/")
     }
     mavenCentral()
+    maven {
+        setUrl("https://maven.myddd.org/releases/")
+    }
+    maven {
+        setUrl("https://maven.myddd.org/snapshots/")
+    }
 }
 
 dependencies {
@@ -42,6 +50,10 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test:${rootProject.extra["spring.boot"]}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${project.extra["junit-version"]}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${project.extra["junit-version"]}")
+    testImplementation("javax.inject:javax.inject:1")
+    testImplementation("org.myddd:myddd-ioc-api:${rootProject.extra["myddd_version"]}")
+    testImplementation("org.myddd:myddd-ioc-spring:${rootProject.extra["myddd_version"]}")
+
 
 }
 
