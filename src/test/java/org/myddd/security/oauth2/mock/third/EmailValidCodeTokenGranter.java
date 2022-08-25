@@ -6,7 +6,6 @@ import org.springframework.security.oauth2.provider.token.AuthorizationServerTok
 
 import java.time.LocalDateTime;
 import java.util.Map;
-import java.util.Objects;
 
 import static org.myddd.security.oauth2.mock.GrantType.GRANT_TYPE_EMAIL_CODE;
 

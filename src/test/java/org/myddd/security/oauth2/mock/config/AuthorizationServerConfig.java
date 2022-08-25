@@ -28,10 +28,8 @@ import org.springframework.security.oauth2.provider.token.AuthorizationServerTok
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.inject.Inject;
-import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,7 +118,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      * 通过 tokenGranter 塞进去的就是它了
      */
     private TokenGranter tokenGranter() {
-        TokenGranter tokenGranter = new TokenGranter() {
+        return new TokenGranter() {
             private CompositeTokenGranter delegate;
 
             @Override
@@ -131,7 +129,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 return delegate.grant(grantType, tokenRequest);
             }
         };
-        return tokenGranter;
     }
 
     @Override

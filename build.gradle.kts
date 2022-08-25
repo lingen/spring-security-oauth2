@@ -9,9 +9,9 @@ version = "0.1.0-SNAPSHOT"
 
 extra["jackson-version"] = "2.13.3"
 extra["junit-version"] = "5.8.2"
-extra["spring.boot"] = "2.7.2"
+extra["spring.boot"] = "2.7.3"
 
-extra["myddd_version"] = "0.3.2-ALPHA"
+extra["myddd_version"] = "0.3.4-BETA"
 
 repositories {
     maven {
